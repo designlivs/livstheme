@@ -1,0 +1,15 @@
+{
+  "id": "livstheme",
+  "name": "Livs Theme",
+  "description": "A refreshing new look for Zen browser.",
+  "homepage": "https://github.com/designlivs/livstheme",
+  "readme": "https://raw.githubusercontent.com/designlivs/livstheme/main/README.md",
+  "style": {
+    "chrome": "userChrome.css"
+  },
+  "author": "designlivs",
+  "version": "1.0.0",
+  "tags": ["chrome", "minimal", "zen"],
+  "createdAt": "2026-04-20",
+  "fork": ["zen"]
+}
