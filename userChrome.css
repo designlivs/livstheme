@@ -1,16 +1,14 @@
 :root{
   --livs-bg:light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.1));
-  );
   
   --livs-acc:light-dark(rgba(0,0,0,0.3), rgba(255,255,255,0.17));
-  );
 }
 
 
 
 
 
-/*------EXPANDED SIDEBAR------*/
+/*------GENERAL------*/
 
 #navigator-toolbox{
   padding: 4px 5px 10px 8px !important;
@@ -21,23 +19,14 @@
   opacity: 1 !important;
 }
 
-zen-workspace {
-  & > arrowscrollbox {
-    &[overflowing] {
-      &[scrolledtostart]::before {
-        opacity: 1 !important;
-      }
-    }
-  }
+arrowscrollbox::before {
+  opacity: 0 !important;
 }
 
-#zen-appcontent-navbar-container {
-      display: block !important;
-      height: fit-content !important;
-      max-height: fit-content !important;
-      background: transparent !important;
-      box-shadow: none !important;
+zen-workspace:not([collapsedpinnedtabs]) .zen-current-workspace-indicator{
+  border-bottom: solid 1px var(--livs-bg) !important;
 }
+
 
 .workspace-arrowscrollbox{
   height: calc(100% - 60px) !important;
@@ -52,6 +41,29 @@ scrollbox {
   content: "" !important;
   height: 60px !important;
 }
+
+
+
+/*------BORDERLESS------*/
+
+
+:root{
+  --zen-element-separation: 0px !important;
+  --zen-webview-border-radius: 0 !important;
+  #titlebar {
+    margin: 0px !important; 
+  }
+}
+
+#zen-tabbox-wrapper{
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+#zen-appcontent-wrapper{
+    border-left: solid 1px rgba(255,255,255,0.2) !important;
+}
+
 
 /*------SEARCHBAR------*/
 
@@ -144,16 +156,51 @@ scrollbox {
 }
 
 .zen-essentials-container tab .tab-stack .tab-content:is([selected]) .tab-icon-image{
-  filter: drop-shadow(0px 0px 12px rgba(255, 255, 255, 0.9));
+  filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.9));
 }
 
 
-/*------Workspaces------*/
+/*------TABS------*/
+
+.tab-background{
+  transition: all 0.3s ease-out !important;
+}
+
+
+.workspace-arrowscrollbox{
+.tabbrowser-tab[selected]{
+  .tab-background {
+    border-radius: 17px !important;
+    background-color: var(--livs-acc) !important;
+  }
+  }
+}
+  
+
+/*------FOLDERS------*/
+
+zen-folder:not([collapsed], [has-active])  {
+  border-radius: 22px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255, 0.1)) !important;
+  transition: opacity 0.3s ease;
+}
+
+zen-folder:not([collapsed]) .tab-group-container{
+  border-top: solid 1px var(--livs-acc) !important;
+  padding-top: 10px !important;
+  margin-bottom: 10px !important;
+  margin-right: 10px !important;
+  margin-left: 10px !important;
+}
+
+zen-folder{
+  transition: all 0.3s ease-out !important;
+}
 
 
 
 
-
+/*------WORKSPACE SELECTOR------*/
 #zen-workspaces-button {
   position: relative !important;
   transform: scale(0.8) !important;
@@ -192,49 +239,45 @@ scrollbox {
   &:has(.subviewbutton:nth-child(6)[active="true"])::before { translate: 155px !important; }
   &:has(.subviewbutton:nth-child(7)[active="true"])::before { translate: 186px !important; }
   &:has(.subviewbutton:nth-child(8)[active="true"])::before { translate: 217px !important; }
-}
 
-.subviewbutton {
-  position: relative !important;
-  z-index: 1 !important;
-  transition: all 0.3s ease !important;
-  border-radius: 22px !important;
-  background: transparent !important;
-
-  &[active="true"] {
-    background: transparent !important;
-  }
-
-  &:not([active="true"]) .zen-workspace-icon {
-    transform: scale(0) !important;
-  }
-
-  > .zen-workspace-icon {
+  & .subviewbutton {
+    position: relative !important;
+    z-index: 1 !important;
     transition: all 0.3s ease !important;
-    transform: scale(1) !important;
-  }
-
-  &:not([active="true"]):hover {
+    border-radius: 22px !important;
     background: transparent !important;
+
+    &[active="true"] {
+      background: transparent !important;
+    }
+
+    &:not([active="true"]) .zen-workspace-icon {
+      transform: scale(0) !important;
+    }
+
+    > .zen-workspace-icon {
+      transition: all 0.3s ease !important;
+      transform: scale(1) !important;
+    }
+
+    &:not([active="true"]):hover {
+      background: transparent !important;
+    }
+
+    &:not([active="true"]):hover > .zen-workspace-icon {
+      transform: scale(1) !important;
+      filter: grayscale(1) !important;
+    }
+
+    &:not([active="true"])::after {
+      content: "" !important;
+      width: 5px !important;
+      height: 5px !important;
+      border-radius: 22px !important;
+      background-color: var(--livs-acc) !important;
+    }
   }
 }
-
-.subviewbutton:not([active="true"]):hover > .zen-workspace-icon {
-  transform: scale(1) !important;
-  filter: grayscale(1) !important;
-}
-
-.subviewbutton:not([active="true"])::after {
-  content: "" !important;
-  width: 5px !important;
-  height: 5px !important;
-  border-radius: 22px !important;
-  background-color: var(--livs-acc) !important;
-}
-
-
-
-
 
 
 
@@ -279,4 +322,7 @@ scrollbox {
   content: var(--player-label, "Media") !important;
 }
 
+#zen-media-controls-toolbar[media-sharing]  #zen-media-playback-buttons{
+  display: none !important;
+}
 
