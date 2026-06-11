@@ -413,11 +413,12 @@ zen-folder:not([collapsed]) .tab-group-label{
 }
 
 
-
 /*------WORKSPACE SELECTOR------*/
+
 #zen-workspaces-button:not([icons-overflow="true"]){
   position: relative !important;
-  transform: scale(0.8) !important;
+  gap: 0 !important;
+  transform: scale(0.7) !important;
   border: solid var(--livs-acc) 1px !important;
   border-radius: 22px !important;
   padding: 3px !important;
@@ -428,7 +429,7 @@ zen-folder:not([collapsed]) .tab-group-label{
   transition: transform 0.5s ease !important;
 
   &:hover {
-    transform: scale(1.02) !important;
+    transform: scale(1) !important;
   }
 
   &::before {
@@ -436,26 +437,28 @@ zen-folder:not([collapsed]) .tab-group-label{
     position: absolute !important;
     top: 3px !important;
     left: 3px !important;
-    width: 27px !important;
+    width: 30px !important;
     height: calc(100% - 6px) !important;
     border-radius: 20px !important;
     background: var(--livs-acc) !important;
-    transition: translate 0.35s cubic-bezier(0.34, 1.26, 0.64, 1) !important;
     pointer-events: none !important;
     z-index: 0 !important;
+    transition: translate 0.35s cubic-bezier(0.34, 1.26, 0.64, 1) !important;
+    transform-origin: center center !important;
   }
 
-  &:has(.subviewbutton:nth-child(1)[active="true"])::before { translate: 0px !important; }
-  &:has(.subviewbutton:nth-child(2)[active="true"])::before { translate: 32px !important; }
-  &:has(.subviewbutton:nth-child(3)[active="true"])::before { translate: 63px !important; }
-  &:has(.subviewbutton:nth-child(4)[active="true"])::before { translate: 94px !important; }
-  &:has(.subviewbutton:nth-child(5)[active="true"])::before { translate: 125px !important; }
-  &:has(.subviewbutton:nth-child(6)[active="true"])::before { translate: 156px !important; }
-  &:has(.subviewbutton:nth-child(7)[active="true"])::before { translate: 187px !important; }
-  &:has(.subviewbutton:nth-child(8)[active="true"])::before { translate: 218px !important; }
+
+  &:has(.subviewbutton:nth-child(1)[active="true"])::before { translate: 0px !important; animation: zen-stretch-1 0.25s ease !important; }
+  &:has(.subviewbutton:nth-child(2)[active="true"])::before { translate: 30px !important; animation: zen-stretch-2 0.25s ease !important; }
+  &:has(.subviewbutton:nth-child(3)[active="true"])::before { translate: 60px !important; animation: zen-stretch-3 0.25s ease !important; }
+  &:has(.subviewbutton:nth-child(4)[active="true"])::before { translate: 30px !important; animation: zen-stretch-4 0.25s ease !important; }
+  &:has(.subviewbutton:nth-child(5)[active="true"])::before { translate: 120px !important; animation: zen-stretch-5 0.25s ease !important; }
+  &:has(.subviewbutton:nth-child(6)[active="true"])::before { translate: 150px !important; animation: zen-stretch-6 0.25s ease !important; }
+  &:has(.subviewbutton:nth-child(7)[active="true"])::before { translate: 180px !important; animation: zen-stretch-7 0.25s ease !important; }
+  &:has(.subviewbutton:nth-child(8)[active="true"])::before { translate: 210px !important; animation: zen-stretch-8 0.25s ease !important; }
 
   & .subviewbutton {
-    width: 27.5px !important;
+    min-width: 30px !important;
     position: static !important;
     z-index: 1 !important;
     transition: all 0.3s ease !important;
@@ -472,7 +475,7 @@ zen-folder:not([collapsed]) .tab-group-label{
 
     > .zen-workspace-icon {
       transition: all 0.3s ease !important;
-      transform: scale(1) !important;
+      transform: scale(1.2) !important;
     }
 
     &:not([active="true"]):hover {
@@ -498,6 +501,15 @@ zen-folder:not([collapsed]) .tab-group-label{
 #zen-workspaces-button[icons-overflow="true"]{
   width: 300px !important;
 }
+
+@keyframes zen-stretch-1 { 0% { transform: scaleX(1); } 50% { transform: scaleX(1.5); } 100% { transform: scaleX(1); } }
+@keyframes zen-stretch-2 { 0% { transform: scaleX(1); } 50% { transform: scaleX(1.5); } 100% { transform: scaleX(1); } }
+@keyframes zen-stretch-3 { 0% { transform: scaleX(1); } 50% { transform: scaleX(1.5); } 100% { transform: scaleX(1); } }
+@keyframes zen-stretch-4 { 0% { transform: scaleX(1); } 50% { transform: scaleX(1.5); } 100% { transform: scaleX(1); } }
+@keyframes zen-stretch-5 { 0% { transform: scaleX(1); } 50% { transform: scaleX(1.5); } 100% { transform: scaleX(1); } }
+@keyframes zen-stretch-6 { 0% { transform: scaleX(1); } 50% { transform: scaleX(1.5); } 100% { transform: scaleX(1); } }
+@keyframes zen-stretch-7 { 0% { transform: scaleX(1); } 50% { transform: scaleX(1.5); } 100% { transform: scaleX(1); } }
+@keyframes zen-stretch-8 { 0% { transform: scaleX(1); } 50% { transform: scaleX(1.5); } 100% { transform: scaleX(1); } }
 
 /*------Player------*/
 
